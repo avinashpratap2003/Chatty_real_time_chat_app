@@ -5,7 +5,7 @@ import cloudinary from "../lib/cloudinary.js";
 import cors from "cors";
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173","https://chatty-real-time-chat-4zimxebfx-avinashpratap2003s-projects.vercel.app"],
   credentials: true,
 };
 
