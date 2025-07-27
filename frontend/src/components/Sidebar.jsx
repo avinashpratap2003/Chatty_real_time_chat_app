@@ -14,9 +14,17 @@ const Sidebar = () => {
     getUsers();
   }, [getUsers]);
 
-  const filteredUsers = showOnlineOnly
+  const filteredUsers = (showOnlineOnly
     ? users.filter((user) => onlineUsers.includes(user._id))
-    : users;
+    : users
+  ).sort((a, b) => {
+    // If no messages with a user, put them at the end
+    if (!a.latestMessageTimestamp) return 1;
+    if (!b.latestMessageTimestamp) return -1;
+    
+    // Sort by most recent message
+    return new Date(b.latestMessageTimestamp) - new Date(a.latestMessageTimestamp);
+  });
 
   if (isUsersLoading) return <SidebarSkeleton />;
 
